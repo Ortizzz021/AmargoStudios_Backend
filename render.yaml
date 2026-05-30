@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: amargo-studios-backend
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build && npx prisma migrate deploy
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+
+databases:
+  - name: amargo-studios-db
+    databaseName: amargo_studios_prod
+    plan: free
+    region: ohio
