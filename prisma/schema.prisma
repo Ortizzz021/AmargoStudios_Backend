@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Perfil {
+  id              String         @id @default(uuid()) @db.Uuid
+  email           String         @unique
+  password_hash   String
+  nombre_completo String
+  rol             String         @default("cliente")
+  avatar_url      String?
+  fecha_creacion  DateTime       @default(now()) @db.Timestamptz()
+  cotizaciones    Cotizacion[]   @relation("AsignadoA")
+  seguimientos    Seguimiento[]
+
+  @@map("perfiles")
+}
+
+model Cliente {
+  id              String         @id @default(uuid()) @db.Uuid
+  nombre_completo String
+  email           String         @unique
+  telefono        String?
+  empresa         String?
+  fecha_creacion  DateTime       @default(now()) @db.Timestamptz()
+  cotizaciones    Cotizacion[]
+  seguimientos    Seguimiento[]
+
+  @@map("clientes")
+}
+
+model Cotizacion {
+  id                   String    @id @default(uuid()) @db.Uuid
+  cliente_id           String    @db.Uuid
+  servicio             String
+  mensaje              String?
+  presupuesto_estimado Decimal?  @db.Decimal
+  fecha_tentativa      DateTime? @db.Date
+  estado               String    @default("pendiente")
+  asignado_a           String?   @db.Uuid
+  fecha_creacion       DateTime  @default(now()) @db.Timestamptz()
+
+  cliente              Cliente   @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
+  perfil               Perfil?   @relation("AsignadoA", fields: [asignado_a], references: [id])
+
+  @@map("cotizaciones")
+}
+
+model Seguimiento {
+  id             String   @id @default(uuid()) @db.Uuid
+  cliente_id     String   @db.Uuid
+  autor_id       String   @db.Uuid
+  contenido      String
+  fecha_creacion DateTime @default(now()) @db.Timestamptz()
+
+  cliente        Cliente  @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
+  autor          Perfil   @relation(fields: [autor_id], references: [id])
+
+  @@map("seguimiento")
+}
