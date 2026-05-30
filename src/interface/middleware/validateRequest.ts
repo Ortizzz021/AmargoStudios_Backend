@@ -12,8 +12,18 @@ export function validateRequest(schema: AnyZodObject) {
 
       // Keep validated values
       req.body = parsed.body;
-      req.query = parsed.query;
-      req.params = parsed.params;
+      if (parsed.query) {
+        for (const key in req.query) {
+          delete req.query[key];
+        }
+        Object.assign(req.query, parsed.query);
+      }
+      if (parsed.params) {
+        for (const key in req.params) {
+          delete req.params[key];
+        }
+        Object.assign(req.params, parsed.params);
+      }
       next();
     } catch (error) {
       if (error instanceof ZodError) {
