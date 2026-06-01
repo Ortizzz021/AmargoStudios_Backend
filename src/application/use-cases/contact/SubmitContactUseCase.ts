@@ -30,8 +30,8 @@ export class SubmitContactUseCase {
       cliente_id: cliente.id,
       servicio: dto.servicio,
       mensaje: dto.mensaje,
-      presupuesto_estimado: null,
-      fecha_tentativa: null,
+      presupuesto_estimado: dto.presupuesto_estimado ?? null,
+      fecha_tentativa: dto.fecha_tentativa ? new Date(dto.fecha_tentativa) : null,
     });
   }
 }

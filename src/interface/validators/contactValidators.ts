@@ -7,5 +7,7 @@ export const submitContactSchema = z.object({
     telefono: z.string().optional(),
     servicio: z.string().min(1, 'Selecciona un servicio'),
     mensaje: z.string().min(10, 'Describe tu proyecto (mínimo 10 caracteres)'),
+    presupuesto_estimado: z.number().nonnegative('Debe ser un valor positivo').optional(),
+    fecha_tentativa: z.string().optional(),
   }),
 });
