@@ -48,21 +48,21 @@ async function main() {
   ];
 
   const cotizacionesData = [
-    { clienteIdx: 0, servicio: servicios[0], mensaje: 'Video corporativo de 3 minutos.', presupuesto: 2500000, diasOffset: -10, estado: 'aprobado' },
+    { clienteIdx: 0, servicio: servicios[0], mensaje: 'Video corporativo de 3 minutos.', presupuesto: 2500000, diasOffset: -10, estado: 'aprobada' },
     { clienteIdx: 1, servicio: servicios[1], mensaje: 'Sesión de fotos para catálogo.', presupuesto: 800000, diasOffset: -7, estado: 'pendiente' },
-    { clienteIdx: 2, servicio: servicios[2], mensaje: 'Cobertura de evento empresarial 8 horas.', presupuesto: 1500000, diasOffset: -5, estado: 'en_revision' },
+    { clienteIdx: 2, servicio: servicios[2], mensaje: 'Cobertura de evento empresarial 8 horas.', presupuesto: 1500000, diasOffset: -5, estado: 'en_proceso' },
     { clienteIdx: 3, servicio: servicios[3], mensaje: 'Pack mensual para Instagram y TikTok.', presupuesto: 1200000, diasOffset: -3, estado: 'pendiente' },
-    { clienteIdx: 4, servicio: servicios[4], mensaje: 'Documental de 15 minutos.', presupuesto: 4000000, diasOffset: -2, estado: 'aprobado' },
-    { clienteIdx: 0, servicio: servicios[5], mensaje: 'Video musical para lanzamiento.', presupuesto: 3000000, diasOffset: -1, estado: 'en_revision' },
+    { clienteIdx: 4, servicio: servicios[4], mensaje: 'Documental de 15 minutos.', presupuesto: 4000000, diasOffset: -2, estado: 'aprobada' },
+    { clienteIdx: 0, servicio: servicios[5], mensaje: 'Video musical para lanzamiento.', presupuesto: 3000000, diasOffset: -1, estado: 'en_proceso' },
     { clienteIdx: 1, servicio: servicios[6], mensaje: 'Sesión de branding personal.', presupuesto: 600000, diasOffset: 0, estado: 'pendiente' },
-    { clienteIdx: 2, servicio: servicios[0], mensaje: 'Video institucional para web.', presupuesto: 1800000, diasOffset: -15, estado: 'rechazado' },
-    { clienteIdx: 3, servicio: servicios[1], mensaje: 'Fotos de producto para e-commerce.', presupuesto: 1100000, diasOffset: -8, estado: 'aprobado' },
+    { clienteIdx: 2, servicio: servicios[0], mensaje: 'Video institucional para web.', presupuesto: 1800000, diasOffset: -15, estado: 'rechazada' },
+    { clienteIdx: 3, servicio: servicios[1], mensaje: 'Fotos de producto para e-commerce.', presupuesto: 1100000, diasOffset: -8, estado: 'aprobada' },
     { clienteIdx: 4, servicio: servicios[2], mensaje: 'Cobertura de lanzamiento 4 horas.', presupuesto: 900000, diasOffset: -6, estado: 'pendiente' },
-    { clienteIdx: 0, servicio: servicios[3], mensaje: 'Contenido semanal 3 meses.', presupuesto: 2200000, diasOffset: -4, estado: 'en_revision' },
-    { clienteIdx: 1, servicio: servicios[4], mensaje: 'Mini documental responsabilidad social.', presupuesto: 3500000, diasOffset: -12, estado: 'aprobado' },
+    { clienteIdx: 0, servicio: servicios[3], mensaje: 'Contenido semanal 3 meses.', presupuesto: 2200000, diasOffset: -4, estado: 'en_proceso' },
+    { clienteIdx: 1, servicio: servicios[4], mensaje: 'Mini documental responsabilidad social.', presupuesto: 3500000, diasOffset: -12, estado: 'aprobada' },
     { clienteIdx: 2, servicio: servicios[5], mensaje: 'Video clip animado artista independiente.', presupuesto: 1600000, diasOffset: -9, estado: 'pendiente' },
-    { clienteIdx: 3, servicio: servicios[6], mensaje: 'Branding fotográfico para startup.', presupuesto: 750000, diasOffset: -11, estado: 'rechazado' },
-    { clienteIdx: 4, servicio: servicios[0], mensaje: 'Video de capacitación interna.', presupuesto: 2000000, diasOffset: -13, estado: 'aprobado' },
+    { clienteIdx: 3, servicio: servicios[6], mensaje: 'Branding fotográfico para startup.', presupuesto: 750000, diasOffset: -11, estado: 'rechazada' },
+    { clienteIdx: 4, servicio: servicios[0], mensaje: 'Video de capacitación interna.', presupuesto: 2000000, diasOffset: -13, estado: 'aprobada' },
   ];
 
   for (const c of cotizacionesData) {
