@@ -16,7 +16,6 @@ async function main() {
       rol: 'admin',
     },
   });
-  console.log('✅ Admin creado:', admin.email);
 
   const clientesData = [
     { nombre_completo: 'Laura Martínez', email: 'laura@gmail.com', telefono: '3101234567', empresa: 'Creativa SAS' },
