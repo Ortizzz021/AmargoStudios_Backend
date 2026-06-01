@@ -1,52 +1,131 @@
-# Amargo Studios - Backend API
+# 🎬 Amargo Studios - Backend API
 
-API REST construida bajo Clean Architecture para la gestión de clientes, cotizaciones y seguimientos de la agencia audiovisual Amargo Studios.
+API REST profesional construida bajo **Clean Architecture** para la gestión integral de clientes, cotizaciones y seguimientos de la agencia audiovisual Amargo Studios.
 
-## Tecnologías Utilizadas
+## 📋 Tabla de Contenidos
 
-- **Runtime**: Node.js + Express (TypeScript)
-- **Base de Datos**: PostgreSQL
-- **ORM**: Prisma ORM (v6)
-- **Seguridad**: JWT (jsonwebtoken), bcryptjs, CORS, Helmet
-- **Validación de Datos**: Zod (v3)
-- **Compilación/Entorno**: tsx, typescript, eslint, prettier
+- [Tecnologías](#-tecnologías)
+- [Requisitos](#-requisitos)
+- [Instalación](#-instalación)
+- [Configuración](#-configuración)
+- [Ejecutar](#-ejecutar)
+- [Estructura](#-estructura)
+- [API Endpoints](#-api-endpoints)
+- [Autenticación](#-autenticación)
+- [Arquitectura](#-clean-architecture)
+- [Testing](#-testing)
 
-## Estructura del Proyecto
+## 🛠️ Tecnologías
 
-```text
-src/
-├── domain/                  # Lógica de negocio core (independiente de frameworks)
-│   ├── entities/            # Modelos/Entidades del negocio
-│   └── repositories/        # Interfaces de acceso a datos
-├── application/             # Casos de uso de la aplicación
-│   ├── dtos/                # Data Transfer Objects
-│   └── use-cases/           # Implementación de las operaciones del negocio
-├── infrastructure/          # Implementaciones de servicios externos y bases de datos
-│   ├── database/            # Cliente e inicialización de Prisma
-│   └── repositories/        # Repositorios Prisma concretos
-├── interface/               # Controladores, rutas y middlewares de Express
-│   ├── controllers/         # Adaptadores HTTP
-│   ├── middleware/          # Seguridad, autenticación, errores, validación
-│   ├── routes/              # Definición de endpoints
-│   └── validators/          # Schemas de validación Zod
-├── shared/                  # Utilidades comunes compartidas
-└── server.ts                # Punto de entrada del servidor Express
+| Componente | Versión | Propósito |
+|-----------|---------|----------|
+| **Node.js** | ≥18 | Runtime |
+| **Express** | 5.2 | Framework HTTP |
+| **TypeScript** | 6.0 | Tipado estático |
+| **PostgreSQL** | 13+ | Base de datos |
+| **Prisma ORM** | 6.2 | Acceso a datos |
+| **JWT** | 9.0 | Autenticación |
+| **bcryptjs** | 3.0 | Hash seguro de contraseñas |
+| **Zod** | 3.23 | Validación de esquemas |
+| **Helmet** | 8.2 | Headers de seguridad |
+| **ESLint** | 10.4 | Linting |
+| **Prettier** | 3.8 | Formateo de código |
+
+## 📋 Requisitos
+
+- **Node.js** 18 o superior
+- **npm** 9+ o **yarn**
+- **PostgreSQL** 13+ (local o nube como Supabase)
+- **Git**
+
+## 🚀 Instalación
+
+### 1. Clonar el repositorio
+
+```bash
+git clone <repo-url>
+cd AmargoStudios-Backend
 ```
 
-## Requisitos Previos
+### 2. Instalar dependencias
 
-1. Instalar dependencias:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-2. Configurar las variables de entorno en un archivo `.env` (guíate de `.env.example`):
-   ```env
-   DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/amargo_studios?schema=public"
-   JWT_SECRET="tu-secreto-super-seguro"
-   PORT=3001
-   NODE_ENV="development"
-   ```
+### 3. Configurar variables de entorno
+
+Copia el archivo `.env.example` a `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Edita `.env` con tus valores:
+
+```env
+# Base de Datos
+DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/amargo_studios"
+
+# Autenticación JWT
+JWT_SECRET="tu-secreto-super-seguro-cambiar-en-produccion"
+
+# Servidor
+PORT=3001
+NODE_ENV="development"
+```
+
+**⚠️ Importante**: Nunca commiteyes `.env` a git. Asegúrate que esté en `.gitignore`.
+
+### 4. Configurar base de datos
+
+```bash
+# Ejecutar migraciones
+npm run db:migrate
+
+# Poblar datos de prueba (opcional)
+npm run db:seed
+```
+
+## ▶️ Ejecutar
+
+### Desarrollo (con hot reload)
+
+```bash
+npm run dev
+```
+
+El servidor estará disponible en: `http://localhost:3001`
+
+### Producción
+
+```bash
+# Compilar TypeScript
+npm run build
+
+# Ejecutar versión compilada
+npm run start
+```
+
+## ⚙️ Configuración Adicional
+
+### Prisma Studio (Base de datos visual)
+
+```bash
+npm run studio
+```
+
+Abre `http://localhost:5555` en el navegador.
+
+### Migraciones de base de datos
+
+```bash
+# Crear migración automática
+npm run db:migrate -- --name nombre_migracion
+
+# Resetear base de datos (borrar todo)
+npm run db:reset
+```
 
 ## Scripts Disponibles
 
