@@ -9,6 +9,7 @@ import { SeguimientoController } from '../controllers/SeguimientoController';
 import { authMiddleware } from '../middleware/authMiddleware';
 import { validateRequest } from '../middleware/validateRequest';
 import { createSeguimientoSchema } from '../validators/seguimientoValidators';
+import { uuidParamSchema } from '../validators/paramsValidators';
 
 const router = Router();
 
@@ -37,6 +38,6 @@ router.use(authMiddleware);
 
 router.post('/', validateRequest(createSeguimientoSchema), seguimientoController.create);
 router.get('/', seguimientoController.getByCliente);
-router.delete('/:id', seguimientoController.delete);
+router.delete('/:id', validateRequest(uuidParamSchema), seguimientoController.delete);
 
 export default router;

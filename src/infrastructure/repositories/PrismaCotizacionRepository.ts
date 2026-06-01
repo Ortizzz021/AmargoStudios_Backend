@@ -9,8 +9,15 @@ import { PaginationParams, PaginatedResponse, calculateSkip, buildPaginationMeta
 import { prisma } from '../database/prisma';
 import { Prisma } from '@prisma/client';
 
+type PrismaCotizacionWithRelations = Prisma.CotizacionGetPayload<{
+  include: {
+    cliente: { select: { id: true; nombre_completo: true; email: true; empresa: true } };
+    perfil: { select: { id: true; nombre_completo: true; email: true } };
+  };
+}>;
+
 export class PrismaCotizacionRepository implements ICotizacionRepository {
-  private mapToEntity(dbModel: any): CotizacionWithRelations {
+  private mapToEntity(dbModel: PrismaCotizacionWithRelations): CotizacionWithRelations {
     return {
       id: dbModel.id,
       cliente_id: dbModel.cliente_id,

@@ -52,10 +52,7 @@ export class SeguimientoController {
         id: req.user.id,
         rol: req.user.rol,
       });
-      res.status(200).json({
-        status: 'success',
-        message: 'Seguimiento eliminado correctamente',
-      });
+      res.status(204).send();
     } catch (error) {
       next(error);
     }

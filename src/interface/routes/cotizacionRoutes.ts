@@ -12,6 +12,7 @@ import { authMiddleware } from '../middleware/authMiddleware';
 import { roleMiddleware } from '../middleware/roleMiddleware';
 import { validateRequest } from '../middleware/validateRequest';
 import { createCotizacionSchema, updateCotizacionSchema, getCotizacionesQuerySchema } from '../validators/cotizacionValidators';
+import { uuidParamSchema } from '../validators/paramsValidators';
 
 const router = Router();
 
@@ -37,8 +38,8 @@ router.use(authMiddleware);
 
 router.post('/', validateRequest(createCotizacionSchema), cotizacionController.create);
 router.get('/', validateRequest(getCotizacionesQuerySchema), cotizacionController.getAll);
-router.get('/:id', cotizacionController.getById);
+router.get('/:id', validateRequest(uuidParamSchema), cotizacionController.getById);
 router.put('/:id', validateRequest(updateCotizacionSchema), cotizacionController.update);
-router.delete('/:id', roleMiddleware(['admin']), cotizacionController.delete);
+router.delete('/:id', roleMiddleware(['admin']), validateRequest(uuidParamSchema), cotizacionController.delete);
 
 export default router;

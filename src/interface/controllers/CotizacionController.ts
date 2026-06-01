@@ -66,10 +66,7 @@ export class CotizacionController {
   delete = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       await this.deleteCotizacionUseCase.execute(req.params.id as string);
-      res.status(200).json({
-        status: 'success',
-        message: 'Cotización eliminada correctamente',
-      });
+      res.status(204).send();
     } catch (error) {
       next(error);
     }

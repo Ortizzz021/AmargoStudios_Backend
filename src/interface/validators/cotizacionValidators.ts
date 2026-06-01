@@ -11,6 +11,9 @@ export const createCotizacionSchema = z.object({
 });
 
 export const updateCotizacionSchema = z.object({
+  params: z.object({
+    id: z.string().uuid('El ID de la cotización debe ser un UUID válido'),
+  }),
   body: z.object({
     servicio: z.string().min(1, 'El servicio no puede estar vacío').optional(),
     mensaje: z.string().optional(),

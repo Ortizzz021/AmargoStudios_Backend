@@ -6,6 +6,7 @@ import { PerfilController } from '../controllers/PerfilController';
 import { authMiddleware } from '../middleware/authMiddleware';
 import { validateRequest } from '../middleware/validateRequest';
 import { updatePerfilSchema } from '../validators/perfilValidators';
+import { uuidParamSchema } from '../validators/paramsValidators';
 
 const router = Router();
 
@@ -17,7 +18,7 @@ const perfilController = new PerfilController(getPerfilByIdUseCase, updatePerfil
 
 router.use(authMiddleware);
 
-router.get('/:id', perfilController.getById);
+router.get('/:id', validateRequest(uuidParamSchema), perfilController.getById);
 router.put('/:id', validateRequest(updatePerfilSchema), perfilController.update);
 
 export default router;

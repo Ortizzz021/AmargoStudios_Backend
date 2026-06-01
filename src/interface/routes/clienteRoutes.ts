@@ -10,6 +10,7 @@ import { authMiddleware } from '../middleware/authMiddleware';
 import { roleMiddleware } from '../middleware/roleMiddleware';
 import { validateRequest } from '../middleware/validateRequest';
 import { createClienteSchema, updateClienteSchema, getClientesQuerySchema } from '../validators/clienteValidators';
+import { uuidParamSchema } from '../validators/paramsValidators';
 
 const router = Router();
 
@@ -32,8 +33,8 @@ router.use(authMiddleware);
 
 router.post('/', validateRequest(createClienteSchema), clienteController.create);
 router.get('/', validateRequest(getClientesQuerySchema), clienteController.getAll);
-router.get('/:id', clienteController.getById);
+router.get('/:id', validateRequest(uuidParamSchema), clienteController.getById);
 router.put('/:id', validateRequest(updateClienteSchema), clienteController.update);
-router.delete('/:id', roleMiddleware(['admin']), clienteController.delete);
+router.delete('/:id', roleMiddleware(['admin']), validateRequest(uuidParamSchema), clienteController.delete);
 
 export default router;

@@ -10,7 +10,7 @@ dist/
 .env.production
 
 # Prisma
-prisma/migrations/
+# prisma/migrations/
 
 # IDE
 .vscode/

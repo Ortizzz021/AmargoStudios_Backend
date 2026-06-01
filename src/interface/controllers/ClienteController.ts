@@ -66,10 +66,7 @@ export class ClienteController {
   delete = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       await this.deleteClienteUseCase.execute(req.params.id as string);
-      res.status(200).json({
-        status: 'success',
-        message: 'Cliente eliminado correctamente',
-      });
+      res.status(204).send();
     } catch (error) {
       next(error);
     }
